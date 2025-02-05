@@ -27,7 +27,6 @@ public class Main {
     public static void getUser() {
 
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class);
-        headers = new HttpHeaders(response.getHeaders());
         headers.set("Cookie", response.getHeaders().getFirst("Set-Cookie"));
         System.out.println(response.getBody() + headers.getFirst("Set-Cookie"));
     }
