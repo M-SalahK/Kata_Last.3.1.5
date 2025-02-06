@@ -19,9 +19,9 @@ public class Main {
         User user1 = new User(3L, "Thomas", "Shelby", (byte) 12);
 
         getUser();
-        postRequest(user, url, headers, restTemplate);
-        putRequest(user1, url, headers, restTemplate);
-        delete(3L, headers, restTemplate);
+        postRequest(user);
+        putRequest(user1);
+        delete(3L);
     }
 
     public static void getUser() {
@@ -31,19 +31,19 @@ public class Main {
         System.out.println(response.getBody() + headers.getFirst("Set-Cookie"));
     }
 
-    public static void postRequest(User user, String url, HttpHeaders headers, RestTemplate restTemplate) {
+    public static void postRequest(User user) {
 
         HttpEntity<User> requestUser = new HttpEntity<>(user, headers);
         System.out.println(restTemplate.exchange(url, HttpMethod.POST, requestUser, String.class).getBody());
     }
 
-    public static void putRequest(User user, String url, HttpHeaders headers, RestTemplate restTemplate) {
+    public static void putRequest(User user) {
 
         HttpEntity<User> requestUser = new HttpEntity<>(user, headers);
         System.out.println(restTemplate.exchange(url, HttpMethod.PUT, requestUser, String.class).getBody());
     }
 
-    public static void delete(Long id, HttpHeaders headers, RestTemplate restTemplate) {
+    public static void delete(Long id) {
 
         HttpEntity<User> requestUser = new HttpEntity<>(headers);
         String removeUrl = url + "/" + id;
